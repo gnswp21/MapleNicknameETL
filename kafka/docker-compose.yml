@@ -33,6 +33,7 @@ services:
       - KAFKA_ZOOKEEPER_CONNECT=zoo1:2181
       - KAFKA_LOG_DIRS=/root/kafka/data
       - KAFKA_AUTO_CREATE_TOPICS_ENABLE=True
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
     volumes:
       - kafka_data_1:/root/kafka/data
       - kafka_log_1:/root/kafka/logs
