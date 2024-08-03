@@ -1,0 +1,4 @@
+kafka:
+  brokers: 54.180.135.221
+  port: 19094
+  topic: my-topic

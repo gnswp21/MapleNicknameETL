@@ -1,0 +1,12 @@
+{
+  "name": "Maple-Nickname-ETL-virtual-cluster",
+  "containerProvider": {
+    "type": "EKS",
+    "id": "Maple-Nickname-ETL-cluster",
+    "info": {
+      "eksInfo": {
+        "namespace": "default"
+      }
+    }
+  }
+}

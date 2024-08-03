@@ -1,0 +1,25 @@
+FROM openjdk:11
+
+
+# install spark
+WORKDIR /root
+#RUN curl https://dlcdn.apache.org/spark/spark-3.4.3/spark-3.4.3-bin-hadoop3-scala2.13.tgz --output spark-3.4.3-bin-hadoop3-scala2.13.tgz
+COPY spark-3.4.3-bin-hadoop3-scala2.13.tgz /root/spark-3.4.3-bin-hadoop3-scala2.13.tgz
+RUN tar xvf spark-3.4.3-bin-hadoop3-scala2.13.tgz && rm *.tgz
+RUN ln -s spark-3.4.3-bin-hadoop3-scala2.13 spark
+
+# Install Python pip pyspark
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip
+
+RUN pip install pyspark
+RUN pip install kafka-python
+
+# set configurations, ENV variables
+ENV SPARK_HOME=/root/spark
+ENV PATH=$PATH:$SPARK_HOME/bin
+COPY spark-defaults.conf $SPARK_HOME/conf/spark-defaults.conf
+RUN mkdir $SPARK_HOME/logs
+WORKDIR $SPARK_HOME
+
+
