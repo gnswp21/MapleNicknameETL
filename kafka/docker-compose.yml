@@ -15,7 +15,7 @@ services:
       - KafkaSwarmCluster
     environment:
       ZOO_MY_ID: 1
-      ZOO_SERVERS: server.1=kafka-swarm_zoo1:2888:3888;2181 server.2=kafka-swarm_zoo2:2888:3888;2181 server.3=kafka-swarm_zoo3:2888:3888;2181
+      ZOO_SERVERS: server.1=kafka-swarm_zoo1.1:2888:3888;2181 server.2=kafka-swarm_zoo2.1:2888:3888;2181
     deploy:
       placement:
         constraints: [node.hostname == ip-172-31-0-131]
@@ -34,44 +34,16 @@ services:
       - KafkaSwarmCluster
     environment:
       ZOO_MY_ID: 2
-      ZOO_SERVERS: server.1=kafka-swarm_zoo1:2888:3888;2181 server.2=kafka-swarm_zoo2:2888:3888;2181 server.3=kafka-swarm_zoo3:2888:3888;2181
+      ZOO_SERVERS: server.1=kafka-swarm_zoo1.1:2888:3888;2181 server.2=kafka-swarm_zoo2.1:2888:3888;2181
     deploy:
       placement:
         constraints: [node.hostname == ip-172-31-4-54]
 
-  zoo3:
-    image: zookeeper
-    restart: always
-    hostname: zoo3
-    container_name: zoo3
-    ports:
-      - 32181:2181
-    volumes:
-      - zookeeper_data_3:/data
-      - zookeeper_log_3:/datalog
-    networks:
-      - KafkaSwarmCluster
-    environment:
-      ZOO_MY_ID: 3
-      ZOO_SERVERS: server.1=kafka-swarm_zoo1:2888:3888;2181 server.2=kafka-swarm_zoo2:2888:3888;2181 server.3=kafka-swarm_zoo3:2888:3888;2181
-    deploy:
-      placement:
-        constraints: [node.hostname == ip-172-31-8-26]
-
-
 volumes:
   zookeeper_data_1:
   zookeeper_data_2:
-  zookeeper_data_3:
   zookeeper_log_1:
   zookeeper_log_2:
-  zookeeper_log_3:
-  kafka_data_1:
-  kafka_data_2:
-  kafka_data_3:
-  kafka_log_1:
-  kafka_log_2:
-  kafka_log_3:
 
 networks:
   KafkaSwarmCluster:
