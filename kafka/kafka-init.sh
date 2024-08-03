@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat <<EOF > /root/kafka/config/server.properties
+cat <<EOF >> /root/kafka/config/server.properties
 broker.id=${KAFKA_BROKER_ID}
 zookeeper.connect=${KAFKA_ZOOKEEPER_CONNECT}
 listeners=${KAFKA_LISTENERS}
