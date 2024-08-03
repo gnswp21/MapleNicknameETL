@@ -1,0 +1,2 @@
+*.csv
+/spark/spark-defaults.conf
