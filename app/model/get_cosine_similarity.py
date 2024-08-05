@@ -21,37 +21,18 @@ def get_embeddings(text_list):
 
 
 # get traing embedding
-# embeddings_df = pd.read_csv("data/embeddings.csv")
-# train_embeddings = embeddings_df.values.tolist()
-
 embeddings_df = pd.read_csv("data/mean_embeddings.csv")
 train_embeddings = embeddings_df.values.tolist()
-
-new_texts = ["바다"]
-new_embeddings = get_embeddings(new_texts)
-# 코사인 유사성을 사용하여 유사성 측정
-similarity_scores = cosine_similarity(new_embeddings, train_embeddings)
-
-
-# 결과 출력
-for i, score in enumerate(similarity_scores[0]):
-    print(f"Train Text {i+1} Similarity Score: {score:.4f}")
-# 최대 유사성을 가지는 학습 데이터와 그 점수 출력
-max_sim_index = np.argmax(similarity_scores[0])
-max_sim_score = similarity_scores[0][max_sim_index]
-print(f"\nMost similar to Train Text {max_sim_index + 1} with a score of {max_sim_score:.4f}")
-#
 
 new_texts = ["릅좋"]
 new_embeddings = get_embeddings(new_texts)
 # 코사인 유사성을 사용하여 유사성 측정
 similarity_scores = cosine_similarity(new_embeddings, train_embeddings)
+# 대각선 요소 추출
+diagonal_values = np.diag(similarity_scores[0])
 
+# 대각선 요소들의 평균 계산
+average_diagonal_similarity = np.mean(diagonal_values)
 
-# 결과 출력
-for i, score in enumerate(similarity_scores[0]):
-    print(f"Train Text {i+1} Similarity Score: {score:.4f}")
-# 최대 유사성을 가지는 학습 데이터와 그 점수 출력
-max_sim_index = np.argmax(similarity_scores[0])
-max_sim_score = similarity_scores[0][max_sim_index]
-print(f"\nMost similar to Train Text {max_sim_index + 1} with a score of {max_sim_score:.4f}")
+print("대각선 요소들의 평균 코사인 유사성:", average_diagonal_similarity)
+
