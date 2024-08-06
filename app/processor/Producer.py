@@ -3,7 +3,7 @@ from collections import defaultdict
 from kafka import KafkaProducer
 
 
-def produce_topic(brokers: str, topics: str, data: dict) -> None:
+def send_message(brokers: str, topics: str, data: dict) -> None:
     # 프로듀서 인스턴스 생성
     producer = KafkaProducer(bootstrap_servers=[brokers],
                              value_serializer=lambda m: json.dumps(m).encode('utf-8'))

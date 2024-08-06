@@ -1,13 +1,13 @@
 import json
 import sys
 from collections import defaultdict
-from proceesor import MapleAPI_Parser, Producer
+from app.processor import MapleAPI_Parser, Producer
 
 if __name__ != "__main__":
     print("This is a main py, not a module")
     sys.exit(1)
 
-kafka_broker = "mykafka1:19094"
+kafka_broker = "mykafka:19094"
 kafka_topic = "test-nickname-2"
 result = defaultdict(list)
 page = 330074
@@ -17,6 +17,6 @@ for i in range(end):
 print(f'send message to {kafka_topic}:')
 json_data = {'start_page':page, 'end_page':page+end, 'nicknames':result[2]}
 print(result[2])
-Producer.produce_topic(kafka_broker, kafka_topic, json_data)
+Producer.send_message(kafka_broker, kafka_topic, json_data)
 
 
