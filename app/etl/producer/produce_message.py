@@ -9,9 +9,10 @@ result = defaultdict(list)
 
 logging.basicConfig(
     level=logging.INFO,  # 로그 레벨 설정
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',  # 로그 포맷 설정
+    format='%(asctime)s %(levelname)s - %(message)s',  # 로그 포맷 설정
     handlers=[
-        logging.StreamHandler()  # 로그를 콘솔로 출력
+        logging.StreamHandler(),  # 로그를 콘솔로 출력
+        logging.FileHandler('app.log')  # 로그를 파일로 저장
     ]
 )
 
@@ -22,9 +23,6 @@ start = 330050
 end = start+10
 
 for page in range(start, end):
-    response = MapleAPI_Parser.get_ranking_page(page)
     logger.info(f'Send message to {kafka_topic} page: {page}')
-    json_data = {'page': page, 'ranking': response}
-    Producer.send_message(kafka_broker, kafka_topic, json_data)
 
 
