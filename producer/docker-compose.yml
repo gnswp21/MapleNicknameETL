@@ -1,8 +1,6 @@
 services:
   producer:
-    build: # 이미지 빌드 설정
-      context: .  # 현재 디렉토리를 빌드 컨텍스트로 설정
-      dockerfile: Dockerfile-producer  # 사용할 Dockerfile 지정
+    image: myproducer
     hostname: myproducer
     container_name: myproducer
     volumes:
