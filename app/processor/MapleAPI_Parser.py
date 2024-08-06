@@ -29,7 +29,7 @@ def get_nickname_in_targets(page, result, targets):
 
 
 def get_ranking_page(page, logger):
-    logger.info('find nicknames page from :', page)
+    logger.info('find nicknames page from : {page}')
     PAGE = str(page)
     DATE = datetime.now().strftime('%Y-%m-%d')
     MAPLE_API_KEY = os.getenv("MAPLE_API_KEY")
