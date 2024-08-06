@@ -28,7 +28,7 @@ def get_nickname_in_targets(page, result, targets):
             result[len(name)].append(name)
 
 
-def get_ranking_page(page):
+def get_ranking_page(page, logger):
     PAGE = str(page)
     DATE = datetime.now().strftime('%Y-%m-%d')
     MAPLE_API_KEY = os.getenv("MAPLE_API_KEY")
@@ -39,7 +39,7 @@ def get_ranking_page(page):
     }
     response = requests.get(url, headers=headers)
     while response.status_code != 200:
-        print(response.status_code, 'waiting for server response')
+        logger.info('response :{response.status_code} -waiting for server response')
         time.sleep(1)
         response = requests.get(url, headers=headers)
 

@@ -23,7 +23,7 @@ start = 330050
 end = 353000
 
 for page in range(start, end):
-    response = MapleAPI_Parser.get_ranking_page(page)
+    response = MapleAPI_Parser.get_ranking_page(page, logger)
     logger.info(f'Send message to {kafka_topic} page: {page}')
     json_data = {'page': page, 'ranking': response}
-    Producer.send_message(kafka_broker, kafka_topic, json_data)
+    Producer.send_message(kafka_broker, kafka_topic, json_data, logger)
