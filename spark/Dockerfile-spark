@@ -3,7 +3,6 @@ FROM openjdk:11
 
 # install spark
 WORKDIR /root
-#RUN curl https://dlcdn.apache.org/spark/spark-3.4.3/spark-3.4.3-bin-hadoop3-scala2.13.tgz --output spark-3.4.3-bin-hadoop3-scala2.13.tgz
 COPY spark-3.4.3-bin-hadoop3-scala2.13.tgz /root/spark-3.4.3-bin-hadoop3-scala2.13.tgz
 RUN tar xvf spark-3.4.3-bin-hadoop3-scala2.13.tgz && rm *.tgz
 RUN ln -s spark-3.4.3-bin-hadoop3-scala2.13 spark
@@ -14,8 +13,9 @@ RUN apt-get update && \
 
 RUN pip install pyspark
 RUN pip install kafka-python
-
-RUN pip install pyspark
+RUN pip install 'transformers[torch]'
+RUN pip install scikit-learn
+RUN pip install pandas
 
 # set configurations, ENV variables
 ENV SPARK_HOME=/root/spark

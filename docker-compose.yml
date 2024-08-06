@@ -4,6 +4,7 @@ services:
     container_name: myspark
     volumes:
       - ./app:/root/maple/app
+      - ./data:/root/maple/data
     environment:
       PYTHONPATH: /root/maple
       MYKAFKA: ${MYKAFKA}
