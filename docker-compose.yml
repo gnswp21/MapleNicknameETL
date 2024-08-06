@@ -1,0 +1,14 @@
+services:
+  spark:
+    image: myspark
+    container_name: myspark
+    volumes:
+      - ./app:/root/maple/app
+    environment:
+      PYTHONPATH: /root/maple
+      MYKAFKA: ${MYKAFKA}
+      MAPLE_API_KEY: ${MAPLE_API_KEY}
+      SPARK_HADOOP_FS_S3A_ACCESS_KEY: ${SPARK_HADOOP_FS_S3A_ACCESS_KEY}
+      SPARK_HADOOP_FS_S3A_SECRET_KEY: ${SPARK_HADOOP_FS_S3A_SECRET_KEY}
+    working_dir: /root/maple
+    command: tail -f /dev/null

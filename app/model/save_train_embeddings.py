@@ -19,7 +19,7 @@ def get_embeddings(text_list):
 
 
 # 4000개의 학습 데이터 임베딩
-train_texts = pd.read_csv("data/sample.csv")["name"].tolist()
+train_texts = pd.read_csv("../../data/sample.csv")["name"].tolist()
 train_embeddings = get_embeddings(train_texts)
 df = pd.DataFrame(train_embeddings)
 df.to_csv("data/embeddings.csv", mode="w", index=False)
