@@ -1,4 +1,4 @@
 *.csv
 /spark/spark-defaults.conf
 .env
-.tgz
+/spark/spark-3.4.3-bin-hadoop3-scala2.13.tgz
