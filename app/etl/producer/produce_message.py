@@ -12,7 +12,7 @@ logging.basicConfig(
     format='%(asctime)s %(levelname)s - %(message)s',  # 로그 포맷 설정
     handlers=[
         logging.StreamHandler(),  # 로그를 콘솔로 출력
-        logging.FileHandler('app.log')  # 로그를 파일로 저장
+        logging.FileHandler('app/producer.log')  # 로그를 파일로 저장
     ]
 )
 
