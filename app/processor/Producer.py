@@ -3,15 +3,15 @@ from collections import defaultdict
 from kafka import KafkaProducer
 
 
-def send_message(brokers: str, topics: str, data: dict) -> None:
+def send_message(brokers: str, topics: str, data: dict, logger) -> None:
     # 프로듀서 인스턴스 생성
     producer = KafkaProducer(bootstrap_servers=[brokers],
                              value_serializer=lambda m: json.dumps(m).encode('utf-8'))
     def on_send_success(record_metadata):
-        print(f"Message delivered to {record_metadata.topic} partition {record_metadata.partition} offset {record_metadata.offset}")
+        logger.info(f"Message delivered to {record_metadata.topic} partition {record_metadata.partition} offset {record_metadata.offset}")
 
     def on_send_error(excp):
-        print(f"Error sending message: {excp}")
+        logger.info(f"Error sending message: {excp}")
 
     try:
         # Kafka로 메시지 전송
@@ -23,7 +23,7 @@ def send_message(brokers: str, topics: str, data: dict) -> None:
         producer.flush()
 
     except Exception as e:
-        print(f"Error producing message: {e}")
+        logger.info(f"Error producing message: {e}")
     finally:
         producer.close()
 

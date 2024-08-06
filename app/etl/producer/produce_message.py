@@ -20,9 +20,10 @@ logger = logging.getLogger(__name__)
 
 # 330071 ~ 352775 약 2만 3천 초당 3회 약 3시간 쿼리
 start = 330050
-end = start+10
+end = 353000
 
 for page in range(start, end):
+    response = MapleAPI_Parser.get_ranking_page(page)
     logger.info(f'Send message to {kafka_topic} page: {page}')
-
-
+    json_data = {'page': page, 'ranking': response}
+    Producer.send_message(kafka_broker, kafka_topic, json_data, logger)
