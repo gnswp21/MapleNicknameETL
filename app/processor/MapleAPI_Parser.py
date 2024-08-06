@@ -8,11 +8,11 @@ def get_nickname_in_targets(page, result, targets):
     print('find nicknames page from :', page)
     PAGE = str(page)
     DATE = datetime.now().strftime('%Y-%m-%d')
-    MAPLE_APIKEY = os.getenv("MAPLE_APIKEY")
+    MAPLE_API_KEY = os.getenv("MAPLE_API_KEY")
     url = 'https://open.api.nexon.com/maplestory/v1/ranking/overall?date=' + DATE + "&page=" + PAGE
     headers = {
         'accept': 'application/json',
-        'x-nxopen-api-key': MAPLE_APIKEY
+        'x-nxopen-api-key': MAPLE_API_KEY
     }
     response = requests.get(url, headers=headers)
     while response.status_code != 200:
@@ -27,5 +27,24 @@ def get_nickname_in_targets(page, result, targets):
         if len(name) in targets:
             result[len(name)].append(name)
 
+
+def get_ranking_page(page):
+    print('find nicknames page from :', page)
+    PAGE = str(page)
+    DATE = datetime.now().strftime('%Y-%m-%d')
+    MAPLE_API_KEY = os.getenv("MAPLE_API_KEY")
+    url = 'https://open.api.nexon.com/maplestory/v1/ranking/overall?date=' + DATE + "&page=" + PAGE
+    headers = {
+        'accept': 'application/json',
+        'x-nxopen-api-key': MAPLE_API_KEY
+    }
+    response = requests.get(url, headers=headers)
+    while response.status_code != 200:
+        print(response.status_code, 'waiting for server response')
+        time.sleep(1)
+        response = requests.get(url, headers=headers)
+
+    table = response.json()
+    return table['ranking']
 
 
