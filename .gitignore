@@ -1,3 +1,4 @@
 *.csv
 /spark/spark-defaults.conf
 .env
+.tgz
