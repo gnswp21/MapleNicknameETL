@@ -3,15 +3,15 @@ from collections import defaultdict
 from kafka import KafkaProducer
 
 
-def send_message(brokers: str, topics: str, data: dict, logger) -> None:
+def send_message(brokers: str, topics: str, data: dict) -> None:
     # 프로듀서 인스턴스 생성
     producer = KafkaProducer(bootstrap_servers=[brokers],
                              value_serializer=lambda m: json.dumps(m).encode('utf-8'))
     def on_send_success(record_metadata):
-        logger.info(f"Message delivered to {record_metadata.topic} partition {record_metadata.partition} offset {record_metadata.offset}")
+        print(f"Message delivered to {record_metadata.topic} partition {record_metadata.partition} offset {record_metadata.offset}")
 
     def on_send_error(excp):
-        logger.info(f"Error sending message: {excp}")
+        print(f"Error sending message: {excp}")
 
     try:
         # Kafka로 메시지 전송
