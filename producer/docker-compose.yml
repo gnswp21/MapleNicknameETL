@@ -1,0 +1,10 @@
+services:
+  producer:
+    image: myproducer
+    hostname: myproducer
+    container_name: myproducer
+    volumes:
+      - ../app:/root/maple/app
+    environment:
+      PYTHONPATH: /root/maple
+    working_dir: /root/maple
