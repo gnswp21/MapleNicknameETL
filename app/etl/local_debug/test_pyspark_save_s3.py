@@ -1,8 +1,7 @@
 import os
-
-from pyspark.sql import  SparkSession
-from pyspark.sql.functions import  *
-from pyspark.sql.types import  *
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import *
+from pyspark.sql.types import *
 
 from app.processor.SparkConsumer import SparkConsumer
 
@@ -22,14 +21,4 @@ df.write \
     .mode("append") \
     .save(s3_output_path)
 spark.stop()
-
-
-
-#S3에서 데이터 읽기
-
-# s3_input_path = "s3a://maple-nickname-etl-bucket-datalake/test-sample.parquet"
-# df = spark.read.parquet(s3_input_path, header=True, inferSchema=True)
-# df.show()
-# spark.stop()
-
 

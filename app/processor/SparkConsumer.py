@@ -9,7 +9,6 @@ class SparkConsumer:
         self.loglevel = loglevel
         self.config = config
 
-
     def get_messages_from_beginning(self, spark, kafka_broker, kafka_topic, nums):
         spark.sparkContext.setLogLevel(self.loglevel)
         # Kafka에서 배치 데이터 읽기
@@ -50,4 +49,3 @@ class SparkConsumer:
 
         ).limit(nums)
         return mydf
-
