@@ -1,11 +1,8 @@
-import os
-import sys
 import logging
 
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 from pyspark.sql import SparkSession
-from pyspark.conf import SparkConf
 
 from typing import Any, Dict
 

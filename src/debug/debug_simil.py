@@ -1,7 +1,5 @@
 from app.model.model import *
 import pandas as pd
-import sys
-from sklearn.metrics.pairwise import cosine_similarity
 from transformers import BertTokenizer, BertModel
 
 names = pd.read_csv("../../../data/low_level_data_without_final_consonant.csv", header=0)["Name"]

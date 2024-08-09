@@ -1,10 +1,6 @@
 import os
-import sys
-
 from  pyspark.sql.functions import *
-import pyspark.sql.types as T
 from pyspark.sql import SparkSession
-from pyspark.conf import SparkConf
 
 from typing import Any, Dict
 from app.processor.SparkConsumer import SparkConsumer

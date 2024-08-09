@@ -20,7 +20,7 @@ RUN pip3 install 'transformers[torch]'
 RUN pip3 install pandas
 RUN pip3 install scikit-learn
 # step 4: copy over custom ETL python modules
-COPY ../../app /my_src/app
+COPY ../../src /my_src/app
 RUN cd /my_src \
     && zip -r dependency_packages.zip app/ \
     && chmod +x /my_src/dependency_packages.zip \
