@@ -1,4 +1,5 @@
 *.csv
-/spark/spark-defaults.conf
+/dockerbuild/local/spark-defaults.conf
 .env
-/spark/spark-3.4.3-bin-hadoop3-scala2.13.tgz
+*.tgz
+*/job-run.json
