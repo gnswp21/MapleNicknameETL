@@ -14,7 +14,6 @@ kafka_broker = os.getenv("MYKAFKA")
 kafka_topic = "maple-ranking"
 consumer = SparkConsumer("test_pyspark", loglevel="INFO")
 df = consumer.get_messages_from_beginning(spark, kafka_broker, kafka_topic, 20)
-df.show()
 # 데이터 처리 (예: 데이터 출력)
 df.write \
     .format("parquet") \

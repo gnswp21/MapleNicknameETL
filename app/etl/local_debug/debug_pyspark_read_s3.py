@@ -23,7 +23,7 @@ final_df = result_df.select(
 )
 final_df.show()
 filtered_df = final_df.filter(
-    (col("level") < 63) & (col("name").rlike(r'^.{2}$'))
+    (col("level") < 60) & (col("name").rlike(r'^.{2}$'))
 )
 
 # Define UDF
