@@ -11,7 +11,7 @@ def run(kwargs: Dict[Any,Any]):
         SparkSession.builder.appName(f"{kwargs['job_name']}")
         .getOrCreate()
     )
-    spark.sparkContext.addPyFile("/my_src/dependency_packages.zip")
+    spark.sparkContext.addPyFile("/etl/dependency_packages.zip")
 
     # Step: Setting kafka
     kafka_broker = os.getenv("MYKAFKA")
@@ -34,7 +34,7 @@ def run(kwargs: Dict[Any,Any]):
     )
     df = final_df
     df = final_df.filter(
-        (col("level") < 60) & (col("name").rlike(r'^.{2}$'))
+        (col("level") <= 61) & (col("name").rlike(r'^.{2}$'))
     )
     LOGGER.info(f"---> save df{df.head()}")
 
