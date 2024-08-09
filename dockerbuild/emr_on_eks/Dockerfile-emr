@@ -1,0 +1,30 @@
+FROM 996579266876.dkr.ecr.ap-northeast-2.amazonaws.com/spark/emr-6.5.0:latest
+# step 0: preparation
+USER root
+# step 1: install os level pkg
+RUN yum -y install zip
+
+# step 2: Add required JARs
+ARG JAR_HOME=/usr/lib/spark/jars/
+ADD https://repo1.maven.org/maven2/org/apache/commons/commons-pool2/2.11.1/commons-pool2-2.11.1.jar $JAR_HOME
+ADD https://repo1.maven.org/maven2/org/apache/kafka/kafka-clients/2.6.2/kafka-clients-2.6.2.jar $JAR_HOME
+# Spark version related.
+ADD https://repo1.maven.org/maven2/org/apache/spark/spark-sql-kafka-0-10_2.12/3.1.2/spark-sql-kafka-0-10_2.12-3.1.2.jar $JAR_HOME
+ADD https://repo1.maven.org/maven2/org/apache/spark/spark-token-provider-kafka-0-10_2.12/3.1.2/spark-token-provider-kafka-0-10_2.12-3.1.2.jar $JAR_HOME
+# Update permissions
+RUN chmod -R +r /usr/lib/spark/jars
+
+# step 3: install third party python packages
+RUN pip3 install --upgrade pip
+RUN pip3 install 'transformers[torch]'
+RUN pip3 install pandas
+RUN pip3 install scikit-learn
+# step 4: copy over custom ETL python modules
+COPY ../../app /my_src/app
+RUN cd /my_src \
+    && zip -r dependency_packages.zip app/ \
+    && chmod +x /my_src/dependency_packages.zip \
+    && cd -
+# step 5: copy Java/Spark/Hadoop related config
+# step 6: Switch back user to hadoop
+USER hadoop:hadoop
