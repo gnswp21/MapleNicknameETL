@@ -1,5 +1,4 @@
-*.csv
-/dockerbuild/local/spark-defaults.conf
-.env
+*/.env
 *.tgz
 */job-run.json
+/dockerbuild/local/.env

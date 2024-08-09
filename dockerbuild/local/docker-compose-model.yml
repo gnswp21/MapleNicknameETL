@@ -1,0 +1,16 @@
+services:
+  local:
+    image: local
+    container_name: local
+    environment:
+      MYKAFKA: ${MYKAFKA}
+      MAPLE_API_KEY: ${MAPLE_API_KEY}
+      SPARK_HADOOP_FS_S3A_ACCESS_KEY: ${SPARK_HADOOP_FS_S3A_ACCESS_KEY}
+      SPARK_HADOOP_FS_S3A_SECRET_KEY: ${SPARK_HADOOP_FS_S3A_SECRET_KEY}
+    command: >
+        spark-submit 
+        --py-files /etl/dependency_packages.zip
+        --conf spark.hadoop.fs.s3a.access.key=${SPARK_HADOOP_FS_S3A_ACCESS_KEY}
+        --conf spark.hadoop.fs.s3a.secret.key=${SPARK_HADOOP_FS_S3A_SECRET_KEY}
+        src/local_debug/local_model_batch.py
+        model

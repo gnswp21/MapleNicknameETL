@@ -1,0 +1,11 @@
+services:
+  local:
+    image: local
+    container_name: local
+    environment:
+      MYKAFKA: ${MYKAFKA}
+      MAPLE_API_KEY: ${MAPLE_API_KEY}
+      SPARK_HADOOP_FS_S3A_ACCESS_KEY: ${SPARK_HADOOP_FS_S3A_ACCESS_KEY}
+      SPARK_HADOOP_FS_S3A_SECRET_KEY: ${SPARK_HADOOP_FS_S3A_SECRET_KEY}
+    command: tail -f /dev/null
+

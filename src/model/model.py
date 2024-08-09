@@ -40,6 +40,21 @@ def get_similarities(tokenizer, model, name, high_df, low_df):
     return float(high_similarity_scores[0][0]), float(low_similarity_scores[0][0])
 
 
+def get_embedding_score(tokenizer, model, name, high_df, low_df):
+    # model
+    name_embedding = get_embeddings(tokenizer, model, [name])
+    # get  embedding
+    high_embeddings = high_df.values.tolist()
+    # 코사인 유사성을 사용하여 유사성 측정
+    high_similarity_scores = cosine_similarity(name_embedding, high_embeddings)
+
+    # get traing embedding
+    low_embedding = low_df.values.tolist()
+    # 코사인 유사성을 사용하여 유사성 측정
+    low_similarity_scores = cosine_similarity(name_embedding, low_embedding)
+    return float(high_similarity_scores[0][0]) - float(low_similarity_scores[0][0])
+
+
 def senti(names):
 
     # 감정 분석을 위한 파이프라인 로드

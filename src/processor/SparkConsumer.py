@@ -1,11 +1,9 @@
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import expr, from_json, col
-from pyspark.sql.types import StringType, ArrayType, StructType, StructField, TimestampType, IntegerType, LongType
+from pyspark.sql.functions import from_json, col
+from pyspark.sql.types import StringType, ArrayType, StructType, StructField, IntegerType, LongType
 
 
 class SparkConsumer:
-    def __init__(self, app_name, loglevel="INFO", config=None):
-        self.app_name = app_name
+    def __init__(self,  loglevel="INFO", config=None):
         self.loglevel = loglevel
         self.config = config
 
