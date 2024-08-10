@@ -7,17 +7,6 @@ class SparkConsumer:
         self.loglevel = loglevel
         self.config = config
 
-    def get_messages_from_beginning(self, spark, kafka_broker, kafka_topic, nums):
-        # Kafka에서 배치 데이터 읽기
-        df = spark.read \
-            .format("kafka") \
-            .option("kafka.bootstrap.servers", kafka_broker) \
-            .option("subscribe", kafka_topic) \
-            .option("startingOffsets", "earliest") \
-            .option("enable.auto.commit", "false") \
-            .load()
-        return df.limit(nums)
-
     def get_messages_from_beginning_decoding(self, spark, kafka_broker, kafka_topic, nums):
         # Kafka에서 배치 데이터 읽기
         df = spark.read \

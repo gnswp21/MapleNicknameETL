@@ -1,5 +1,5 @@
 from collections import defaultdict
-from app.processor import MapleAPI_Parser, Producer
+from src.processor import MapleAPI_Parser, Producer
 import os
 import logging
 

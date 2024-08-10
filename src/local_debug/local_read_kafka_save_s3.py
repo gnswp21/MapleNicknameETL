@@ -26,7 +26,7 @@ def run(kwargs: Dict[Any,Any]):
 
     # Getting kafka message as dataframe
     consumer = SparkConsumer()
-    df = consumer.get_messages_from_beginning_decoding(spark, kafka_broker, kafka_topic, nums=10**6)
+    df = consumer.get_messages_from_beginning_decoding(spark, kafka_broker, kafka_topic, nums=100)
     LOGGER.info(f"---> df head {df.head()}")
     LOGGER.info(f"---> df schema {df.schema}")
 
@@ -44,7 +44,7 @@ def run(kwargs: Dict[Any,Any]):
 
 
     # # Step: Saving dataframe
-    s3_output_path = "s3a://maple-nickname-etl-bucket-datalake/ranking-remain.csv"
+    s3_output_path = "s3a://maple-nickname-etl-bucket-datalake/ranking-debug.csv"
     LOGGER.info(f"---> START save df at  {s3_output_path}")
     df.write \
         .format("csv") \

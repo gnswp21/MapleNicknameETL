@@ -21,7 +21,7 @@ def run(kwargs: Dict[Any, Any]):
     spark.sparkContext.addPyFile("/etl/dependency_packages.zip")
 
     # Read df from S3
-    s3_input_path = "s3a://maple-nickname-etl-bucket-datalake/ranking-remain.csv"
+    s3_input_path = "s3a://maple-nickname-etl-bucket-datalake/ranking-debug.csv"
     schema = StructType([
         StructField("page", StringType(), True),
         StructField("level", StringType(), True),
@@ -44,7 +44,7 @@ def run(kwargs: Dict[Any, Any]):
     df = (df
           .join(processed_df, on="name", how="inner")
           .orderBy(col("score").desc()))
-    output_path = "s3a://maple-nickname-etl-bucket-outputs/ranking_with_scores-remain.csv"
+    output_path = "s3a://maple-nickname-etl-bucket-outputs/ranking_with_scores-debug.csv"
     df.coalesce(1).write.mode("overwrite").csv(output_path, header=True)
     spark.stop()
 
