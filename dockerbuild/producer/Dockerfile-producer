@@ -1,3 +1,6 @@
 FROM python:3.9-slim
 RUN pip install --no-cache-dir kafka-python requests
-CMD ["python", "/root/maple/app/etl/producer/produce_message.py"]
+COPY src /etl/src
+COPY data /etl/data
+WORKDIR /etl
+

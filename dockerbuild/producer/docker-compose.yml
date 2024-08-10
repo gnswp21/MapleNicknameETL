@@ -1,10 +1,12 @@
 services:
   producer:
-    image: myproducer
-    hostname: myproducer
-    container_name: myproducer
+    image: producer
+    hostname: producer
+    container_name: producer
     environment:
-      PYTHONPATH: /root/maple
       MYKAFKA: ${MYKAFKA}
       MAPLE_API_KEY: ${MAPLE_API_KEY}
-    working_dir: /root/maple
+      PYTHONPATH: /etl
+    volumes:
+      - ./log:/etl/log
+    command: [ "python", "src/produce/produce_message.py" ]
