@@ -3,8 +3,6 @@ services:
     image: myproducer
     hostname: myproducer
     container_name: myproducer
-    volumes:
-      - ../app:/root/maple/app
     environment:
       PYTHONPATH: /root/maple
       MYKAFKA: ${MYKAFKA}

@@ -32,6 +32,7 @@ RUN pip3 install --upgrade pip
 RUN pip3 install 'transformers[torch]'
 RUN pip3 install pandas
 RUN pip3 install scikit-learn
+RUN pip3 install matplotlib
 
 ## pyspark
 RUN pip3 install pyspark
