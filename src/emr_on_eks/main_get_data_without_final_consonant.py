@@ -2,7 +2,6 @@ from pyspark.sql.functions import col, udf
 from pyspark.sql.types import StringType, StructType, StructField, BooleanType
 from pyspark.sql import SparkSession
 from typing import Any, Dict
-from transformers import pipeline
 import sys
 
 
