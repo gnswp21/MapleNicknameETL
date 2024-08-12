@@ -2,6 +2,9 @@ services:
   local:
     image: local
     container_name: local
+    ports:
+     - "4040:4040"
+
     environment:
       MYKAFKA: ${MYKAFKA}
       MAPLE_API_KEY: ${MAPLE_API_KEY}
