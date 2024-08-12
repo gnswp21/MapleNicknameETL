@@ -1,0 +1,5 @@
+*/.env
+*.tgz
+*/job-run.json
+/dockerbuild/local/.env
+/dockerbuild/producer/.env

@@ -1,0 +1,17 @@
+FROM openjdk:11
+
+WORKDIR /root
+# install kafka
+RUN curl https://archive.apache.org/dist/kafka/2.5.0/kafka_2.12-2.5.0.tgz --output kafka.tgz
+RUN tar -xvf kafka.tgz
+RUN ln -s kafka_2.12-2.5.0 kafka
+RUN apt-get update && apt-get install -y gettext
+
+# config
+COPY dockerbuild/kafka/kafka-init.sh /root/kafka/kafka-init.sh
+WORKDIR /root/kafka
+
+# Set entrypoint
+CMD ["sh", "/root/kafka/kafka-init.sh"]
+
+
