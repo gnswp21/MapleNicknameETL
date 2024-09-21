@@ -31,7 +31,7 @@
    - 디코딩된 JSON 문자열을 정의된 스키마 (`character_schema`와 `schema`)에 맞춰 `from_json` 함수로 파싱.
    - 이를 통해 JSON 데이터 구조가 Spark 데이터프레임의 컬럼으로 매핑.
 
-3. **배열 컬럼 폭발 (explode)**:
+3. **배열 컬럼  explode**:
    - `ranking` 필드가 배열로 되어 있기 때문에, `explode` 함수를 사용해 배열 내부의 각 요소를 개별 행으로 변환.
 
 4. **필터링**:
