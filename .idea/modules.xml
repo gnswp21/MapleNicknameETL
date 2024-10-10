@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MapleNicknameETL.iml" filepath="$PROJECT_DIR$/MapleNicknameETL.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MapleNicknameETL.iml" filepath="$PROJECT_DIR$/.idea/modules/MapleNicknameETL.iml" />
     </modules>
   </component>
 </project>

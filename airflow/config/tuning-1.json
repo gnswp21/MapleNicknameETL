@@ -1,0 +1,9 @@
+{
+  "mid-cluster-1":{
+    "job-1": {
+      "entryPointArguments": ["maple"],
+      "sparkSubmitParameters": "--driver-cores 1 --driver-memory 4G --executor-cores 2 --executor-memory 4G --num-executors 2"
+    }
+  }
+}
+
